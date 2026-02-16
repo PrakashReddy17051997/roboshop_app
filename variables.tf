@@ -26,9 +26,7 @@ variable "zone_name" {
 
 }
 
-variable "vpc_security_group_ids" {
-  
-}
+
 variable "app_alb_listener_arn" {
   
 }
