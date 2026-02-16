@@ -21,7 +21,7 @@ module "component" {
   name                   = "${local.name}-${var.tags.Component}-ami"
   instance_type          = "t2.micro"
   create_security_group  = false
-  vpc_security_group_ids = var.component_sg_id
+  vpc_security_group_ids = [var.component_sg_id]
   subnet_id              = element(var.private_subnet_ids,0)
   iam_instance_profile = var.iam_instance_profile
   tags = merge(
