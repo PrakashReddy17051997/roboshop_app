@@ -51,3 +51,10 @@ variable "iam_instance_profile" {
 variable "app_version" {
   
 }
+variable "instance_username" {
+  
+}
+
+variable "instance_password" {
+  
+}

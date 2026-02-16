@@ -39,8 +39,8 @@ resource "null_resource" "component" {
     connection {
       host = module.component.private_ip
       type = "ssh"
-      user = "${data.aws_ssm_parameter.ec2_instance_username.value}"
-      password = "${data.aws_ssm_parameter.ec2_instance_password.value}"
+      user = "${var.instance_username}"
+      password = "${var.instance_password}"
     }
 
     provisioner "file" {
