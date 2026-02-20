@@ -19,7 +19,7 @@ module "component" {
   source                 = "terraform-aws-modules/ec2-instance/aws"
   ami                    = data.aws_ami.centos8.id
   name                   = "${local.name}-${var.tags.Component}-ami"
-  instance_type          = "t3.micro"
+  instance_type          = "t2.micro"
   create_security_group  = false
   vpc_security_group_ids = [var.component_sg_id]
   subnet_id              = element(var.private_subnet_ids,0)
@@ -91,7 +91,7 @@ resource "aws_launch_template" "component" {
 
   image_id = aws_ami_from_instance.roboshop-dev-component.id
   instance_initiated_shutdown_behavior = "terminate"
-  instance_type = "t3.micro"
+  instance_type = "t2.micro"
   update_default_version = true
 
   vpc_security_group_ids = [var.component_sg_id]#[data.aws_ssm_parameter.component_sg_id.value]
