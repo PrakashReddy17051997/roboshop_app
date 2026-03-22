@@ -91,7 +91,7 @@ resource "aws_launch_template" "component" {
 
   image_id = aws_ami_from_instance.roboshop-dev-component.id
   instance_initiated_shutdown_behavior = "terminate"
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
   update_default_version = true
 
   vpc_security_group_ids = [var.component_sg_id]#[data.aws_ssm_parameter.component_sg_id.value]
@@ -110,7 +110,7 @@ resource "aws_autoscaling_group" "component" {
   name = "${local.name}-${var.tags.Component}"
   max_size = 10
   min_size = 1
-  health_check_grace_period = 60
+  health_check_grace_period = 120
   health_check_type = "ELB"
   desired_capacity = 2
   vpc_zone_identifier = var.private_subnet_ids
@@ -134,7 +134,7 @@ resource "aws_autoscaling_group" "component" {
     propagate_at_launch = true
   }
   timeouts {
-    delete = "5m"
+    delete = "3m"
   }
 }
 resource "aws_lb_listener_rule" "component" {
